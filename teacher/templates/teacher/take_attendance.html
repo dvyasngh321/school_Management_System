@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Attendance Page</h1>
+    
+    <form method="POST" id="form-data">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>present</th>
+                    <th>Absent</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in student %}
+                <tr class="student-list">
+                    <td id="name">{{s.user.username}}</td>
+                    <td><input type="checkbox" value="0" name="{{s.username.name}}" id="present"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <table>
+        <thead>
+           <tr>
+               <th>Attendance Count</th>
+           </tr>
+        </thead>
+        <tbody id="student">
+                     
+        </tbody>
+    </table>
+  
+</body>
+<script>
+    var present = document.querySelectorAll("#present");
+    present.forEach(function(st, index){
+        st.addEventListener('click', function(){
+            if(st.checked===true){
+                var tbody = document.getElementById("student");  
+                  var tr = document.createElement("tr");
+                  var td = document.createElement("td");
+                  var attendanceCount = Number(st.value);
+                  if(attendanceCount === 0){
+                      attendanceCount ++;
+                  }
+                  else{
+                      attendanceCount++;
+                  }
+                  
+                  td.innerText = attendanceCount;
+                  tr.appendChild(td);
+                  tbody.appendChild(tr);
+
+            }
+
+        }, {once: true})
+
+    })
+
+
+
+    // document.getElementById("form-data").addEventListener('submit', function(e){
+    //     var present = document.querySelectorAll('#present');
+    //     console.log(present)
+    //     present.forEach(function(st, index){
+    //         st.addEventListener('click', function(){
+    //             console.log(st)
+    //             if(st.value === "P"){
+    //               var tbody = document.getElementById("student");  
+    //               var tr = document.createElement("tr");
+    //               var td = document.createElement("td");
+    //               var attendanceCount = 0;
+    //               attendanceCount = attendanceCount + 1;
+    //               td.innerText = attendanceCount;
+    //               tr.appendChild(td);
+    //               tbody.appendChild(tr);
+    //             }
+    //         })
+    //     })
+    //     e.preventDefault();
+    // })
+</script>
+</html>

@@ -1,0 +1,71 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+{% block content %}
+   <div class="container m-auto">
+       <div class="row">
+           <div class="col-lg-10 m-auto">
+               <div class="row">
+                   <div class="col-lg-5 m-3">
+                        <p> UserName: {{student.user.username}}</p>
+                        <p>Name: {{student.user.first_name}} {{student.user.last_name}}</p>
+                        <p>Grade: {{student.grade}}</p>
+                   </div>
+                   <div class="col-lg-5 m-3">
+                        <img src="{{ student.image.url }}" style="max-width: 100%; height: 150px;">
+                   </div>
+               </div>
+               <div class="row mb-4 mt-3">
+                   <div class="col-lg-12">
+                       <table style="width: 100%; font-size: 1rem;" class="table">
+                           <thead>
+                               <tr>
+                                   <th>
+                                       Subjects
+                                   </th>
+                                   <th>
+                                       Marks
+                                   </th>
+                               </tr>
+                            </thead>   
+                            <tbody>
+                                <tr>
+                                    <td>Mathematics</td>
+                                    <td>{{student.result.math}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Science</td>
+                                    <td>{{student.result.science}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Social Studies</td>
+                                    <td>{{student.result.social_studies}}</td>
+                                </tr>
+                                <tr>
+                                    <td>English</td>
+                                    <td>{{student.result.English}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Nepali</td>
+                                    <td>{{student.result.nepali}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Population</td>
+                                    <td>{{student.result.population}}</td>
+                                </tr>
+                                
+                            </tbody>
+                       </table>
+
+                   </div>
+               </div>
+               <div class="row mt-5">
+                   <div class="col-lg-7 ml-auto text-center">
+                       <p>Total : {{student.result.total}}</p>
+                       <p>Percentage : {{student.result.percentage}}</p>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+{% endblock %}

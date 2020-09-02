@@ -1,0 +1,42 @@
+{% extends 'administration/base.html'%}
+{% block content %}
+    <table style="width:100%" class="table">
+        <tr> 
+            <th>ID</th>
+            <th>UserName</th>
+            <th>Student Name</th>
+            <th>Grade</th>
+            <th>Month</th>
+            <th>Amount</th>
+            <th>Total</th>
+            <th>Paid</th>
+            <th>Remaining Due</th>
+            <th>Description</th>
+            <th>created Date</th>
+            <th>delete</th>
+            <th>edit</th>
+        </tr>
+        {% for account in account %}
+        <tr>
+            <td>{{account.id}}</td>
+            <td>{{account.user}}</td>
+            <td>{{account.student}}</td>
+            <td>{{account.grade}}</td>
+            <td>{{account.month}}</td>
+            <td>{{account.amount}}</td>
+            <td>{{account.total}}</td>
+            <td>{{account.paid}}</td>
+            <td>{{account.remaining_due}}</td>
+            <td>{{account.description}}</td>
+            <td>{{account.created_date}}</td>
+            <form action="{% url 'delete_information' account.id %}" method="POST">
+                {% csrf_token %}
+                <td><input type="submit" value="Delete" class="btn btn-danger"></td>
+            </form>
+            <td><a href="{% url 'update_information' account.id %}" class="btn btn-primary">edit</a></td>
+            <td><a href="{% url 'invoice' account.id %}" class="btn btn-primary">invoice</a></td>
+        </tr>
+        {% endfor %}
+        
+    </table>
+{% endblock %}

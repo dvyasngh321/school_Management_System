@@ -1,0 +1,27 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+    <h1>Add Class for Attendance</h1>
+    <div class="container m-auto mt-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <form method="POST" class="form-group">
+                    {% csrf_token %}
+                    {{form}}
+                    <button type="submit" class="btn btn-primary">ok</button>
+                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5 mb-5">
+        <div class="row mt-3">
+            {% for class in myclass %}
+            <div class="col-lg-3 m-2 shadow m-auto" id="leave"> 
+                   <h1><a href="{% url 'take_attendance' class.grade %}"> Take Attendance {{class.grade}}</a></h1> 
+            </div>
+            {% endfor %}
+            <div class="col-lg-3 m-2 shadow m-auto" id="leave">
+                <a href="{% url 'add_class_notification' %}">Class Notification</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

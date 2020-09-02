@@ -1,0 +1,18 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+<div class="container m-auto">
+    <div class="row">
+        <div class="col-lg-8 m-auto p-3">
+            <h1 class="text-center">Send Notification for Class</h1>
+            <form method="POST" class="form=group">
+                {% csrf_token %}
+                <div class="row shadow m-3 p-3">
+                    {{form}}
+                    
+                </div>
+                <button type="submit" class="btn btn-primary m-3">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

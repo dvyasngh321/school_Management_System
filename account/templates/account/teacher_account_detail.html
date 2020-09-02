@@ -1,0 +1,35 @@
+{% extends 'administration/base.html'%}
+{% block content %}
+    <table style="width:100%" class="table">
+        <tr> 
+            <th>ID</th>
+            <th>UserName</th>
+            <th>Name</th>
+            <th>Month</th>
+            <th>Salary</th>
+            <th>Paid</th>
+            <th>Description</th>
+            <th>created Date</th>
+            <th>delete</th>
+            <th>edit</th>
+        </tr>
+        {% for account in account %}
+        <tr>
+            <td>{{account.id}}</td>
+            <td>{{account.teacher}}</td>
+            <td>{{account.name}}</td>
+            <td>{{account.month}}</td>
+            <td>{{account.salary}}</td>
+            <td>{{account.paid}}</td>
+            <td>{{account.description}}</td>
+            <td>{{account.created_date}}</td>
+            <form action="{% url 'delete_teacher_data' account.id %}" method="POST">
+                {% csrf_token %}
+                <td><input type="submit" value="Delete" class="btn btn-danger"></td>
+            </form>
+            <td><a href="{% url 'update_teacher_data' account.id %}" class="btn btn-primary">edit</a></td>
+        </tr>
+        {% endfor %}
+        
+    </table>
+{% endblock %}

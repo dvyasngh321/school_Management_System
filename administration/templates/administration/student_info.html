@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    {{student.gender}}
+    {{student.father_name}}
+    {{student.mother_name}}
+    {{student.account.paid}}
+    {{student.account.total}}
+    {{student.account.description}}
+    {{student.account.remaining_due}}
+    <a href="{% url 'student_form' student.user.id %}">Edit Your Information</a>
+</body>
+</html>

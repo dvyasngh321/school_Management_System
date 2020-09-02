@@ -1,0 +1,61 @@
+{% load static %}
+<header>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-sm-12 col-md-6">
+            <div class="header__section">
+                <h1>Welcome to GyanoDaya School</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, velit.</p>
+                <button type="button">Connect With Us</button>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 col-md-6">
+            <div class="header__image">
+                <img src="{% static 'images/schoolbg.png' %}"> 
+            </div>
+        </div>
+    </div>
+</div>
+</header>
+
+<style>
+/* @media screen and (max-width: 500px){
+    header{
+        height: 100vh;
+    }
+    header .header__section{
+        background: blue;
+        margin-top: 1rem;
+    }
+    header .header__image{
+        margin-top: 1rem;
+        background: blue;
+    }
+
+    header .header__image img{
+        background: brown;
+        display: inline-block;
+    }
+} */
+@media screen and (max-width: 960px){
+    header{
+        height: 80vh;
+    }
+    header .header__section{
+        margin-top: 7rem;     
+    }
+    header .header__section h1{
+        font-size: 700;
+    }
+    header .header__image{
+        margin-top: 1rem;
+        margin-bottom: 16rem;
+        display: none;
+    }
+    .header__image img{
+        height: 150px;
+        max-width: 100%;
+        padding: 30px;    
+    }
+}
+</style>

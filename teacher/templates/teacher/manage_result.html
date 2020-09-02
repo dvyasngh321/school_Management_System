@@ -1,0 +1,53 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+   <div class="container m-auto m-5">
+       <div class="row">
+           <div class="col-lg-8 m-auto">
+            <h1>Result Page</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+           </div>
+       </div>
+   </div>
+   <table style="width: 100%;" class="table">
+       <thead>
+           <tr>
+               <th>S No</th>
+               <th>UserName</th>
+               <th>Mathematics</th>
+               <th>English</th>
+               <th>Science</th>
+               <th>Social Science</th>
+               <th>Nepali</th>
+               <th>Population</th>
+               <th>total</th>
+               <th>percentage</th>
+               <th>Action</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for result in result %}
+           <tr>
+               <td>{{result.id}}</td>
+               <td>{{result.user}}</td>
+               <td>{{result.math}}</td>
+               <td>{{result.English}}</td>
+               <td>{{result.social_studies}}</td>
+               <td>{{result.science}}</td>
+               <td>{{result.nepali}}</td>
+               <td>{{result.population}}</td>
+               <td>{{result.total}}</td>
+               <td>{{result.percentage}}</td>
+               <td><a href="{% url 'update_result' result.id %}" class="btn btn-primary">Edit</a></td>
+               <form action="{% url 'delete_result' result.id %}" method="POST">
+                {% csrf_token %}
+                <td><input type="submit" value="Delete" class="btn btn-danger"></td>
+               </form>
+           </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+{% endblock %}    

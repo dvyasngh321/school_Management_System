@@ -1,0 +1,58 @@
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="{% url 'about' %}">About</a></li>
+    <li><a href="{% url 'contact' %}">Contact</a></li>
+    <li><a href="{% url 'facilities' %}">Facilities</a></li>
+    <li><a href="{% url 'notice' %}">Notice</a></li>
+    {% if user.is_authenticated and user.is_student %}
+    <h3>Hello {{user.first_name}}</h3>
+    <li><a href="/logout">Logout</a></li>
+    <li><a href="{% url 'student_profile' %}"> Student Profile</a></li>
+    {% elif user.is_authenticated and user.is_teacher %}
+    <h3>Hello {{user.first_name}}</h3>
+    <li><a href="/logout">Logout</a></li>
+    <li><a href="#"> Teacher Profile</a></li>
+    {% elif user.is_authenticated and user.is_accountant %}
+    <h3>Hello {{user.first_name}}</h3>
+    <li><a href="/logout">Logout</a></li>
+    <li><a href="#"> Accountant Profile</a></li>
+    {% elif user.is_authenticated and user.is_classteacher %}
+    <h3>Hello {{user.first_name}}</h3>
+    <li><a href="/logout">Logout</a></li>
+    <li><a href="#"> Class Teacher Profile</a></li>
+    {% else %}
+    <li><a href="{% url 'login' %}">Login</a></li>
+    <li>New Student<a href="{% url 'apply_for_registration' %}">Apply For Registration</a></li>
+    {% endif %}
+</ul>
+
+
+<div class="row">
+    <div class="col-md-5 col-sm-12 text-center" id="notice" >
+       <h1 class="mt-5">CLASSES</h1>
+       {% for grade in grade %}
+       <p><a href="{% url 'class_notification' grade.grade %}">{{grade.grade}}</a></p>
+       {% endfor %}
+    </div>
+    <div class="col-md-7 col-sm-12" id="grade">
+       <h1 class="mt-5">LATEST NOTICE</h1>
+       {% for notice in notices %}
+       <div class="row">
+       <div class="col-md-8">
+          <a href="#">{{notice.title}}</a>
+       </div>
+       <div class="col-md-3" id="date">
+          <small>{{notice.created_date}}</small>
+       </div>
+       </div>
+       {% endfor %}
+    </div>
+ </div>
+ <form method="POST">
+   {% csrf_token%}
+   {{form2}}
+   <button type="submit">Ok</button>
+</form>
+
+ <h1><a href="#">{{mygrade.grade}}</a></h1>
+    <a href="{% url 'manage_result' mygrade.grade %}">Manage Result</a>

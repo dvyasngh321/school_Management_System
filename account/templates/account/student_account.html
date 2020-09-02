@@ -1,0 +1,19 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row mt-3">
+        <div class="col-lg-3 m-2 shadow m-auto mb-3" id="leave"> 
+               <h1><a href="{% url 'account_page' %}"> Add Student</a></h1> 
+        </div>
+        <div class="col-lg-3 m-2 shadow m-auto mb-3" id="leave">
+            <a href="{% url 'teacher_account_form' %}">Add teacher</a>
+        </div>
+        <div class="col-lg-3 m-2 shadow m-auto mb-3" id="leave">
+            <a href="{% url 'information' %}">View Student's Account Detail</a>
+        </div>
+        <div class="col-lg-3 m-2 shadow m-auto" id="leave">
+            <a href="{% url 'teacher_account_detail' %}">View Teacher's Account Detail</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
