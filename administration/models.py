@@ -96,21 +96,41 @@ class Registration(models.Model):
         return self.name
 
 
+
 class Result(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.OneToOneField(Student, on_delete = models.CASCADE)
-    class_teacher_name = models.CharField(max_length=100, default="Manish")
+    username = models.CharField(max_length=200)
+    student_name = models.CharField(max_length=200)
+    class_teacher_id = models.ForeignKey(MyClassTeacher,on_delete=models.CASCADE)
     math = models.DecimalField(max_digits=10, decimal_places= 2)
     English = models.DecimalField(max_digits=10, decimal_places= 2)
     social_studies = models.DecimalField(max_digits=10, decimal_places= 2)
     science = models.DecimalField(max_digits=10, decimal_places= 2)
     nepali = models.DecimalField(max_digits=10, decimal_places= 2)
     population = models.DecimalField(max_digits=10, decimal_places=2)
-    total = models.DecimalField(max_digits=10, decimal_places=2)
-    percentage = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    total = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    percentage = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, null=True, blank = True)
 
     def __str__(self):
-        return self.student.user.username
+        return self.username
+
+class StudentLeaveApplication(models.Model):
+    student = models.CharField(max_length=100)
+    teacher_username = models.CharField(max_length=200)
+    reason = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.reason
+
+
+class TeacherLeaveApplication(models.Model):
+    user = models.CharField(max_length=200)
+    reason = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username
 
 
 @receiver(post_save, sender=User)

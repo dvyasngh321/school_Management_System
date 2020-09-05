@@ -14,4 +14,4 @@ class AddClassAsClassTeacherForm(ModelForm):
 class MessageForm(ModelForm):
     class Meta:
         model = Message
-        fields = '__all__'        
+        fields = '__all__'

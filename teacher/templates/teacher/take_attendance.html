@@ -9,24 +9,28 @@
     <h1>Attendance Page</h1>
     
     <form method="POST" id="form-data">
+        {% csrf_token %}
         <table>
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>present</th>
-                    <th>Absent</th>
+                    <th>Status</th>
+                    <th>Confirm</th>
                 </tr>
             </thead>
             <tbody>
                 {% for s in student %}
                 <tr class="student-list">
+                    <td><input value="{{user.username}}" type="text" disabled="true"></td>
                     <td id="name">{{s.user.username}}</td>
-                    <td><input type="checkbox" value="0" name="{{s.username.name}}" id="present"></td>
+                    <td>
+                        {{form.status}}
+                    </td>
+                    <td><button type="submit">ok</button></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <button type="submit">Submit</button>
     </form>
     
     <table>

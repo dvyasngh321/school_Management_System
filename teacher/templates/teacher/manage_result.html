@@ -3,11 +3,39 @@
    <div class="container m-auto m-5">
        <div class="row">
            <div class="col-lg-8 m-auto">
-            <h1>Result Page</h1>
+            <h1 class="m-2">Result Page</h1>
             <form method="POST">
                 {% csrf_token %}
-                {{form.as_p}}
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <fieldset class="m-2">
+                    <input name='username' placeholder="Enter Student's Username" type="text" class="form-control">
+                </fieldset>
+                <fieldset class="m-2">
+                    <input name='student_name' placeholder="Enter Student's Name" type="text" class="form-control">
+                </fieldset>
+                {% if request.user.is_authenticated and user.is_classteacher %}
+                <input type="hidden" name="class_teacher_id" value='{{ request.user.id }}'>
+                {% endif %}
+                <fieldset class="m-2">
+                    <input name='math' class="form-control" placeholder="Enter Mathematics Marks" type="number" tabindex="1" required autofocus>
+                </fieldset>
+                <fieldset class="m-2">
+                    <input name='English' class="form-control" placeholder="Your English Marks" type="number" tabindex="2" required>
+                </fieldset>
+                <fieldset class="m-2">
+                    <input name='nepali' class="form-control" placeholder="Nepali Marks" type="number" tabindex="3" required>
+                </fieldset>
+                <fieldset class="m-2">
+                    <input name='population' class="form-control" placeholder="Population Marks" type="number" tabindex="4" required>
+                </fieldset>
+                <fieldset class="m-2">
+                    <input name='social_studies' class="form-control" placeholder="social_studies" type="number" tabindex="5" required></textarea>
+                </fieldset>
+                <fieldset class="m-2">
+                    <input name='science' class="form-control" placeholder="science" type="number" tabindex="5" required></textarea>
+                </fieldset>
+                <fieldset class="m-2">
+                    <button name="submit" type="submit" class="btn" style="background-color: teal; color: white;">Submit</button>
+                </fieldset>
             </form>
            </div>
        </div>
@@ -17,6 +45,7 @@
            <tr>
                <th>S No</th>
                <th>UserName</th>
+               <th>Name</th>
                <th>Mathematics</th>
                <th>English</th>
                <th>Science</th>
@@ -32,7 +61,8 @@
            {% for result in result %}
            <tr>
                <td>{{result.id}}</td>
-               <td>{{result.user}}</td>
+               <td>{{result.username}}</td>
+               <td>{{result.student_name}}</td>
                <td>{{result.math}}</td>
                <td>{{result.English}}</td>
                <td>{{result.social_studies}}</td>
@@ -40,7 +70,7 @@
                <td>{{result.nepali}}</td>
                <td>{{result.population}}</td>
                <td>{{result.total}}</td>
-               <td>{{result.percentage}}</td>
+               <td>{{result.percentage|floatformat:2}}</td>
                <td><a href="{% url 'update_result' result.id %}" class="btn btn-primary">Edit</a></td>
                <form action="{% url 'delete_result' result.id %}" method="POST">
                 {% csrf_token %}

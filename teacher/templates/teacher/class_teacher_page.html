@@ -1,32 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
+{% extends 'administration/base.html' %}
+{% block content %}
     <h1>Class Teacher? </h1>
     <a href="{% url 'classteacher_class' %}">Add Your Class</a>
-    {% for mygrade in mygrade%}
-    <a href="{% url 'manage_result' mygrade.grade %}">{{mygrade.grade}} Manage Result</a>
-    {% endfor %}
-    <h1>Manage class For attendance</h1>
-    <form method="POST">
-        {% csrf_token%}
-        {{form1}}
-        <button type="submit">Ok</button>
-    </form>
-    {% for class in myclass %}
-       <h1><a href="{% url 'take_attendance' class.grade %}">{{class.grade}}</a></h1>
-    {% endfor %}
     <div class="container mt-5 mb-5">
         <div class="row mt-3">
             <div class="col-lg-3 m-2 shadow m-auto" id="leave">
                 <a href="{% url 'add_class_notification' %}">Class Notification</a>
             </div>
+            <div class="col-lg-3 m-2 shadow m-auto" id="leave">
+                <a href="{% url 'leave_notifications' %}">View Student's Leave Application</a>
+            </div>
+            
+            <div class="col-lg-3 m-2 shadow m-auto" id="leave">
+                
+                {% for mygrade in mygrade %}
+                <a href="{% url 'manage_result' mygrade.grade %}">{{mygrade.grade}} Manage Result</a>
+                {% endfor %}
+
+            </div>
         </div>
     </div>
-</body>
-</html>
+{% endblock %}

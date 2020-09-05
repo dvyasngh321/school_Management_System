@@ -16,4 +16,4 @@ class TeacherAccountForm(ModelForm):
 class ResultForm(ModelForm):
     class Meta:
         model = Result
-        fields = '__all__'        
+        exclude = ('total', 'percentage')

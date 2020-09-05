@@ -4,13 +4,26 @@ from django import forms
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
-from .models import User, Student, Teacher, Registration, Accountant, MyClassTeacher, Notice, Result
+from .models import User, Student, Teacher, Registration, Accountant, MyClassTeacher, Notice, Result, TeacherLeaveApplication, StudentLeaveApplication
 admin.site.register(Notice)
 admin.site.register(Teacher)
 admin.site.register(Student)
 admin.site.register(Accountant)
 admin.site.register(MyClassTeacher)
 admin.site.register(Result)
+
+class StudentLeaveApplicationAdmin(admin.ModelAdmin):
+    list_display = ['student','teacher_username', 'created_date']
+    search_fields = ['student','teacher_username', 'created_date']
+
+admin.site.register(StudentLeaveApplication, StudentLeaveApplicationAdmin)
+
+class TeacherLeaveApplicationAdmin(admin.ModelAdmin):
+    list_display = ['user', 'created_date']
+    search_fields = ['user', 'created_date']
+
+admin.site.register(TeacherLeaveApplication, TeacherLeaveApplicationAdmin)
+
 
 class MyUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):

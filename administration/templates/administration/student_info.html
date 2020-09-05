@@ -1,19 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    {{student.gender}}
-    {{student.father_name}}
-    {{student.mother_name}}
-    {{student.account.paid}}
-    {{student.account.total}}
-    {{student.account.description}}
-    {{student.account.remaining_due}}
-    <a href="{% url 'student_form' student.user.id %}">Edit Your Information</a>
-</body>
-</html>
+{% extends 'administration/base.html' %}
+{% block content %}
+<div class="container m-auto">
+    <div class="row mt-3 mb-3"><hr>
+        <div class="col-lg-5 m-auto">
+            {% if student.image %}
+            <div class="student_image">
+               <img src="{{ student.image.url }}" style="height: 200px; max-width: 100%;">
+            </div>
+            {% endif %}
+            <div>
+                <a class="btn p-2 mt-3" href="{% url 'student_form' student.user.id %}" style="color: white; background-color: teal;">Fill Your Information</a>
+            </div>
+        </div>
+        <div class="col-lg-5 m-auto">
+              <p>Student UserName:{{student.user.username}}</p>
+              <p>Student Name: {{student.user.first_name}} {{student.user.last_name}}</p>
+              <p>Father's Name: {{student.father_name}}</p>
+              <p>Mother's Name: {{student.mother_name}}</p>
+              <p>Gender: {{student.gender}}</p>
+              <p>Grade: {{student.grade}}</p>
+              <p>Date of Birth: {{student.dob}}</p>
+        </div>
+    </div><hr>
+    <div class="row mt-3 mb-3">
+        <div class="col-lg-5 ml-auto m-5">
+            <h1>Fee Information</h1>
+            <p>You have Paid: {{student.account.paid}}</p>
+            <p>Your Total Fee is: {{student.account.total}}</p>
+            <p>Your Remaining Due is: {{student.account.remaining_due}}</p>
+            <p> Description About Payment: {{student.account.description}}</p>
+        </div>
+    </div>
+</div>
+   
+{% endblock %}

@@ -6,14 +6,16 @@
            <div class="col-lg-10 m-auto">
                <div class="row">
                    <div class="col-lg-5 m-3">
-                        <p> UserName: {{student.user.username}}</p>
-                        <p>Name: {{student.user.first_name}} {{student.user.last_name}}</p>
+                        <p> UserName: {{result.username}}</p>
+                        <p>Name: {{result.student_name}}</p>
                         <p>Grade: {{student.grade}}</p>
                    </div>
+                   {% if student.image %}
                    <div class="col-lg-5 m-3">
                         <img src="{{ student.image.url }}" style="max-width: 100%; height: 150px;">
                    </div>
-               </div>
+                   {% endif %}
+               </div><hr>
                <div class="row mb-4 mt-3">
                    <div class="col-lg-12">
                        <table style="width: 100%; font-size: 1rem;" class="table">
@@ -30,27 +32,27 @@
                             <tbody>
                                 <tr>
                                     <td>Mathematics</td>
-                                    <td>{{student.result.math}}</td>
+                                    <td>{{result.math}}</td>
                                 </tr>
                                 <tr>
                                     <td>Science</td>
-                                    <td>{{student.result.science}}</td>
+                                    <td>{{result.science}}</td>
                                 </tr>
                                 <tr>
                                     <td>Social Studies</td>
-                                    <td>{{student.result.social_studies}}</td>
+                                    <td>{{result.social_studies}}</td>
                                 </tr>
                                 <tr>
                                     <td>English</td>
-                                    <td>{{student.result.English}}</td>
+                                    <td>{{result.English}}</td>
                                 </tr>
                                 <tr>
                                     <td>Nepali</td>
-                                    <td>{{student.result.nepali}}</td>
+                                    <td>{{result.nepali}}</td>
                                 </tr>
                                 <tr>
                                     <td>Population</td>
-                                    <td>{{student.result.population}}</td>
+                                    <td>{{result.population}}</td>
                                 </tr>
                                 
                             </tbody>
@@ -60,8 +62,23 @@
                </div>
                <div class="row mt-5">
                    <div class="col-lg-7 ml-auto text-center">
-                       <p>Total : {{student.result.total}}</p>
-                       <p>Percentage : {{student.result.percentage}}</p>
+                       <p>Total : {{result.total}}</p>
+                       <p>Percentage : {{result.percentage}}</p>
+                       {% if result.percentage > 90 %}
+                       <p>Grade : A+ </p>
+                       {% elif result.percentage > 80 and result.percentage < 90 %}
+                       <p>Grade : A</p>
+                       {% elif result.percentage > 70 and result.percentage < 80 %}
+                       <p>Grade : B+</p>
+                       {% elif result.percentage > 60 and result.percentage < 70 %}
+                       <p>Grade : B</p>
+                       {% elif result.percentage > 50 and result.percentage < 60 %}
+                       <p>Grade : C</p>
+                       {% elif result.percentage > 40 and result.percentage < 50 %}
+                       <p>Grade : D</p>
+                       {% else %}
+                       <p>Grade : E</p>
+                       {% endif %}
                    </div>
                </div>
            </div>

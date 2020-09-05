@@ -15,9 +15,9 @@ def student_account(request):
 def account_page(request):
     form = AccountForm(request.POST or None)
     if request.method == 'POST':
-        print(form)
         if form.is_valid():
             form.save()
+            return redirect('/account/information/')
     return render(request, 'account/account_page.html', {'form': form})
 
 
@@ -26,10 +26,9 @@ def account_page(request):
 def teacher_account_form(request):
     form = TeacherAccountForm(request.POST or None)
     if request.method == 'POST':
-        print(form)
         if form.is_valid():
             form.save()
-            return redirect('account/teacher_account_detail')    
+            return redirect('/account/teacher_account_detail')    
     return render(request, 'account/teacher_account_form.html', {'form': form})
 
 @login_required
@@ -46,6 +45,7 @@ def update_teacher_data(request, id):
         form = TeacherAccountForm(request.POST, instance = pi)
         if form.is_valid():
             form.save()
+            return redirect('/account/teacher_account_detail/')
     else:
         pi = TeacherAccount.objects.get(pk=id)
         form = TeacherAccountForm(instance = pi)
@@ -60,7 +60,7 @@ def delete_teacher_data(request, id):
     if request.method == 'POST':
         pi = TeacherAccount.objects.get(pk=id)
         pi.delete()
-        return redirect('/account')
+        return redirect('/account/teacher_account_detail/')
 
 
 @login_required
@@ -69,13 +69,14 @@ def account_information(request):
     account = Account.objects.all()
     return render(request, 'account/account_information.html', {'account':account})
 
+
 @login_required
 @accountant_required
 def invoice(request, id):
-    account = Account.objects.all()
     invoice = Invoices.objects.all()
     if id:
-        a = get_object_or_404(Account, id = id)
+        a = get_object_or_404(Account, pk = id)
+        
         # invoice = invoice.filter(account = a)
     return render(request, 'account/invoice.html', {'invoice':invoice, 'a':a})
 
@@ -87,6 +88,7 @@ def update_information(request, id):
         form = AccountForm(request.POST, instance = pi)
         if form.is_valid():
             form.save()
+            return redirect('/account/information/')
     else:
         pi = Account.objects.get(pk=id)
         form = AccountForm(instance = pi)
@@ -98,4 +100,4 @@ def delete_information(request, id):
     if request.method == 'POST':
         pi = Account.objects.get(pk=id)
         pi.delete()
-        return redirect('/')
+        return redirect('/account/')

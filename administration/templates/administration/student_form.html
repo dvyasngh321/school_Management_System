@@ -1,15 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Submit</button>
-    </form>
-</body>
-</html>
+{% extends 'administration/base.html' %}
+{% block content %}
+<div class="container m-auto m-5">
+    <div class="row m-5">
+        <div class="col-lg-8 m-3 m-auto p-4">
+            <h3 class="m-3">Fill in Your Information</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if user.is_authenticated %}
+                <input type="hidden" name="user" value={{request.user.id}}>
+                {% endif %}
+                <div class="m-3">
+                    <input placeholder="Your Email" type="email" tabindex="1" name="email" autofocus class="form-control">
+                </div>
+                <fieldset class="m-3">
+                    <input placeholder="Your Father's Name" type="text" tabindex="1" name="father_name" autofocus class="form-control">
+                </fieldset>
+                <fieldset class="m-3">
+                    <input placeholder="Your Mother's Name" type="text" tabindex="1" name="mother_name" autofocus class="form-control">
+                </fieldset>
+                <fieldset class="m-3">
+                    <input placeholder="Your Date Of Birth" type="date" tabindex="1" name="dob" autofocus class="form-control">
+                </fieldset>
+                <div class="form-row inline">
+                    <div class="row m-2">
+                    <div class="col-4 m-2">
+                      <label for="gender">Gender</label>
+                      {{ form.gender }}
+                    </div>
+                    <div class="col-4 m-2">
+                        <label for="">Grade</label>
+                        {{ form.grade }}
+                      </div>
+                    </div>  
+                </div>      
+                
+                <fieldset class="m-3">
+                    <input placeholder="Your Phone Number" type="tel" name="phone" tabindex="2" required class="form-control">
+                </fieldset>
+                <fieldset class="m-3">
+                    <input placeholder="Your Location" type="text" name="location" tabindex="3" required class="form-control">
+                </fieldset>
+                <fieldset class="m-3">
+                    <input type="file" name="image" class="form-control">
+                </fieldset>
+                <button type="submit" class="btn m-3" style="background-color: teal; color: white;">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

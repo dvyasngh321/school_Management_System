@@ -35,6 +35,8 @@ class TeacherAccount(models.Model):
     salary = models.DecimalField(max_digits=20, decimal_places=2)
     paid = models.BooleanField(default=False)
     description = models.CharField(max_length=1000)
+    created_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    updated_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
         return self.name

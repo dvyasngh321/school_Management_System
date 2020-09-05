@@ -1,15 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form method="POST">
-        {% csrf_token %}
-        {{form}}
-        <button type="submit">Submit</button>
-    </form>
-</body>
-</html>
+{% extends 'administration/base.html' %}
+{% block content %}
+<div class="container m-3 m-auto">
+    <div class="row m-3">
+        <div class="col-lg-8">
+            <form method="POST">
+                {% csrf_token %}
+                {% if user.is_authenticated %}
+                <input type="hidden" name="username" value="{{request.user.username}}">
+                {% endif %}
+                <div class="form-row inline m-3">
+                    <label for="grade">Grade</label>
+                    {{form.grade}}
+                </div>
+                <button type="submit" class="btn m-3" style="background-color: teal; color:white">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

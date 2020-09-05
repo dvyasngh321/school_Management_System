@@ -1,0 +1,23 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+    <div class="container">
+       <table class="table">
+           <thead>
+               <tr>
+                   <th>Name</th>
+                   <th>Reason</th>
+                   <th>created_date</th>
+               </tr>
+           </thead>
+           <tbody>
+            {% for leave_note in leave_notifications %}
+               <tr>
+                   <td>{{leave_note.student}}</td>
+                   <td>{{leave_note.reason}}</td>
+                   <td>{{leave_note.created_date}}</td>
+               </tr>    
+            {% endfor %}   
+           </tbody>
+       </table>
+    </div>   
+{% endblock %}
