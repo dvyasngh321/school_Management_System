@@ -1,12 +1,13 @@
 {% extends 'administration/base.html' %}
 {% block content %}
-    <div class="container">
+    <div class="container" style="margin: 50px;">
        <table class="table">
            <thead>
                <tr>
                    <th>Name</th>
                    <th>Reason</th>
                    <th>created_date</th>
+                   <th>Action</th>
                </tr>
            </thead>
            <tbody>
@@ -15,6 +16,10 @@
                    <td>{{leave_note.student}}</td>
                    <td>{{leave_note.reason}}</td>
                    <td>{{leave_note.created_date}}</td>
+                   <form method="POST" action="{%  url 'delete_leave_notification' leave_note.id %}">
+                       {% csrf_token %}
+                       <td><input type="submit" value="Delete" class="btn btn-danger"></td>
+                   </form>
                </tr>    
             {% endfor %}   
            </tbody>

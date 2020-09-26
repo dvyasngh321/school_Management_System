@@ -1,0 +1,105 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Post Detail</title>
+  </head>
+  <style>
+      body{
+          background-color: rgb(187, 184, 184);
+      }
+      span{
+          display: flex;
+          flex-direction: row;
+          
+      }
+      span h4{
+          margin-top: 30px;
+          margin-left: 20px;
+          font-weight: bold;
+      }
+  </style>
+  <body>
+
+
+    <div class="container">
+        <div class="row shadow">
+            <div class="col-lg-8" style="width: 100%; margin: auto;">
+                <div class="card" style="width: 100%; border:none; margin: 5px; box-shadow: 50px black;">
+                    <span><img src="{% static 'images/book.svg' %}" style="height: 80px; width: 80px; border-radius: 50%;"><h4>{{post.author}}</h4></span>
+                    {% if post.image %}
+                    <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap">
+                    {% endif %}
+                    <div class="card-body">
+                      <p class="card-text">{{post.description}}</p>
+                      <small class="card-text text-muted">{{post.created_date}}</small>
+                      {% if request.user == post.author %}
+                      <form method="POST" action="{% url 'post_delete' post.id %}">
+                          {% csrf_token %}
+                        <input class="btn btn-primary" type="submit" value="Delete">
+                      </form>
+                      {% endif %}
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-3 m-auto">
+        <div class="row">
+            <div class="col-lg-8 m-auto">
+                <form method="POST" class="form-group">
+                    {% csrf_token %}
+                    <textarea type="text" name="description" class="form-control">Leave Your comment</textarea>
+                    <input type="submit" value="submit" class="btn btn-primary mt-2">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container m-auto">
+        <div class="row">
+            <div class="col-lg-8 m-auto">
+                {% if comment.count == 0 %}
+                <h2>No comments</h2>
+            {% else %}
+                <small>Total Comment: {{comment.count}}</small>   
+            {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row shadow">
+            
+            <div class="col-lg-8" style="width: 100%; margin: auto;">
+                {% for comment in comment %}
+                <div class="card" style="width: 100%; border:none; margin: 5px; box-shadow: 50px black;">
+                   <span><img src="{% static 'images/book.svg' %}" style="height: 80px; width: 80px; border-radius: 50%;"><h4>{{comment.author}}</h4></span>
+                    <div class="card-body">
+                      <p class="card-text">{{comment.description}}</p>
+                      <small class="card-text text-muted">{{comment.created_date}}</small>
+                    </div>
+                </div>
+                {% endfor %}  
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+

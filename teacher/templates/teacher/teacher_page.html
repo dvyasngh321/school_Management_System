@@ -1,31 +1,41 @@
 {% extends 'administration/base.html' %}
 {% block content %}
-    <div class="container mt-5 mb-5">
-        <div class="row m-3">
-            <div class="col-lg-8">
-                {% if user.is_classteacher %}
-                <h1>Add Your Class</h1>
-                     <a href="{% url 'classteacher_class' %}" class="btn" style="background-color: teal; color: white;">Add Your Class</a>
-                {% endif %}    
-            </div>
-        </div>
-        <div class="row mt-3">
-        {% if user.is_classteacher %}
-        <div class="col-lg-3 m-2 shadow m-auto" id="leave">
-                
-            {% for mygrade in mygrade %}
-            <a href="{% url 'manage_result' mygrade.grade %}">{{mygrade.grade}} Manage Result</a>
-            {% endfor %}
-
-        </div>
-        <div class="col-lg-3 m-2 shadow m-auto" id="leave">
-            <a href="{% url 'leave_notifications' %}">View Student's Leave Application</a>
-        </div>
-        {% endif %}
-        
-            <div class="col-lg-3 m-2 shadow m-auto" id="leave">
-                <a href="{% url 'add_class_notification' %}">Class Notification</a>
-            </div>
+<div class="container mt-5 mb-5" style="width: 90%; margin: auto;">
+    <div class="row m-3 m-auto">
+        <div class="col-lg-8">
+            {% if user.is_classteacher %}
+            <h1>Add Your Class</h1>
+                 <a href="{% url 'classteacher_class' %}" class="btn" style="background-color: tomato; color: white;">Add Your Class</a>
+            {% endif %}    
         </div>
     </div>
+    <div class="row p-2">
+        {% if user.is_classteacher %}
+            <div class="col-lg-3 m-2 mb-3 shadow" id="account"> 
+                <h1>
+                    {% for mygrade in mygrade %}
+                    <a href="{% url 'manage_result' mygrade.grade %}">{{mygrade.grade}} Manage Result</a>
+                    {% endfor %}
+                </h1> 
+            </div>
+            <div class="col-lg-3 m-2 shadow " id="account">
+                <h1><a href="{% url 'leave_notifications' %}">View Student's Leave Application</a></h1>
+            </div>
+        {% endif %}    
+        
+            <div class="col-lg-3 m-2 shadow " id="account">
+                <h1><a href="{% url 'add_class_notification' %}">Class Notification</a></h1>
+            </div>
+            <div class="col-lg-3 m-2 shadow " id="account">
+                <h1><a href="{% url 'teacher_leave_form' %}">Apply For Leave</a></h1>
+            </div>
+            <div class="col-lg-3 m-2 shadow " id="account">
+                <h1><a href="{% url 'mypost' %}">View Your Post</a></h1>
+            </div>
+            <div class="col-lg-3 m-2 shadow " id="account">
+                <h1><a href="{% url 'approved_application' %}">Approved Application</a></h1>
+            </div>
+        
+    </div>
+</div>
 {% endblock %}

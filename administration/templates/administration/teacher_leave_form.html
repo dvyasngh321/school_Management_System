@@ -1,0 +1,17 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+<div class="container" style="width: 80%; margin: 100px;">
+    <div class="row">
+        <div class="col-lg-8 m-auto">
+            <h3 class="mb-3">Apply for Leave</h3>
+            <form method="POST" class="form-group">
+                {% csrf_token %}
+                <input type="text" hidden name="user" value="{{request.user.username}}">
+                <textarea type="text" cols="100" rows="5" placeholder="specify your reason" name="reason" class="form-control"></textarea>
+                <input type="checkbox" hidden name="approve">
+                <button type="submit" class="btn mt-3 mb-3" style="background-color: tomato; color: white;"> Submit </button>
+            </form> 
+        </div>
+    </div>
+</div>
+{% endblock%}

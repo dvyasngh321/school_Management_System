@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Invoices, Account, TeacherAccount
+from .models import Account, TeacherAccount, Expense, Payment
 
 # Register your models here.
 class AccountAdmin(admin.ModelAdmin):
@@ -8,5 +8,6 @@ class AccountAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Account)
-admin.site.register(Invoices)
 admin.site.register(TeacherAccount)
+admin.site.register(Expense)
+admin.site.register(Payment)

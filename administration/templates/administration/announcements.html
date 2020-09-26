@@ -1,0 +1,154 @@
+{% load static %}
+
+<section class="container" style="width: 90%; margin: auto; margin-bottom: 2rem;">
+    <div class="heading__sidebar">
+        <h1>About Our School</h1>
+    </div>
+    <div class="side__content">
+        <div class="main__section">
+            <h1 class="main__section_heading">WElcome to Our School</h1>
+            <div class="main__section_img">
+                <img src="{% static 'images/park2.jpg' %}" style="height: 400px; max-width: 100%; width: 100%;">
+            </div>
+            <div class="main__section_content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et nesciunt itaque harum nam dolore accusamus vero beatae assumenda distinctio mollitia ex natus explicabo amet similique quidem aut temporibus tempora repudiandae, omnis consectetur, tempore id accusantium nobis. Quasi, exercitationem officia dolores accusamus commodi tempora quas, doloremque numquam maxime eveniet ipsum eum.</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus saepe magni nulla, ducimus architecto accusantium neque deleniti! Provident, commodi facilis. Facilis, mollitia! Repellendus cupiditate quod ipsa quia qui minus labore, dicta necessitatibus, architecto quidem dolores. Consequuntur minus, incidunt debitis, tempora aliquid, illum quisquam maiores accusantium vero voluptatem voluptate labore magni!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad porro quibusdam explicabo unde reiciendis ipsa expedita sunt corrupti sapiente iste quidem aliquid, excepturi voluptates ex fugit tenetur, dolor tempore, sit possimus rerum molestias! Deleniti culpa vel repellat excepturi impedit doloremque.</p>
+            </div>
+        </div>
+        <aside class="sidebar">
+            <div class="grade">
+                <h1>Sidebar</h1>
+                <div class="grade__button">
+                    {% for grade in grade %}
+                        <a class="btn" href="{% url 'class_notification' grade.grade %}">class {{grade.grade}}</a> 
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="notice">
+                <h1>Notice</h1>
+                {% for notice in notices %}
+                    <ol>
+                        <li style="list-style-type: none;"><a href="{% url 'notice_detail' notice.id %}">{{notice.title}}</a></li>
+                    </ol>
+                {% endfor %}
+            </div>
+        </aside>
+    </div>
+</section>
+
+<style>
+.heading__sidebar{
+    width: 40%;
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    padding: 0.7rem;
+    margin: 1rem;
+    border-bottom: 1px solid var(--text-gray);
+}
+
+
+.side__content{
+    display: flex;
+    width: 100%;
+    margin: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: black;
+    justify-content: space-between;
+    margin: 1rem;
+}
+
+.main__section{
+    width: 55%;
+    margin: 0.5rem;
+    padding: 15px;
+    height: auto;
+    border: 1px solid black;
+
+}
+
+.main__section h1{
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+.main__section p{
+    padding: 1rem;
+}
+
+.main__section_img{
+    height: 400px;
+    overflow: hidden;
+}
+
+.main__section_img img{
+    transition: transform .5s ease-in-out;
+}
+
+.main__section_img:hover img {
+    transform: scale(1.3);
+}
+
+
+aside{
+    width: 40%;
+    margin: 0rem 0.5rem 0rem 0rem;
+}
+
+aside .grade{
+    margin: 0.5rem 0rem;
+    padding: 10px;
+    border: 1px solid black;
+}
+aside .grade h1{
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+aside .grade button{
+    margin: 0.5rem 0.5rem;
+    color: white;
+    background-color: var(--bg-color);
+    outline: none;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+aside .notice{
+    margin: 0.5rem 0rem;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+aside .notice h1{
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+
+@media only screen and (max-width: 1150px){
+    .side__content{
+        display: block;
+
+    }
+    .main__section{
+        width: 90%;
+        margin: auto;
+    }
+
+    aside{
+        width: 90%;
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 760px){
+    .main__section{
+        display: none;
+    }
+}
+</style>

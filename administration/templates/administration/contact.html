@@ -1,4 +1,108 @@
-{% extends 'administration/base.html' %}
-{% block content %}
-<h1>Welcome to contact page</h1>
-{% endblock %}
+{% load static %}
+<div class="main_container" style="width: 100%;">
+    <div class="container m-auto" style="width: 90%;">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="main__map">
+                    <h1>Contact Us</h1><hr style="width: 300px;">
+                    <section class="map">
+                        <div class="map__info">
+                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.057821139988!2d85.29752121453781!3d27.684607733098854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1846e154b935%3A0x63017b08a06c53c0!2sBalkhu%20Bridge!5e0!3m2!1sen!2snp!4v1600498359825!5m2!1sen!2snp" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        </div>
+                        <div class="contact__form">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="inputBox">
+                                    <label for="name">Name</label>
+                                    <input type="text" name="name" required>
+                                </div>
+                                <div class="inputBox">
+                                    <label for="query">Your Query</label>
+                                    <textarea id="w3review" name="query" rows="4" cols="150" style="width: 100%;border: none; border-radius: 10px;"></textarea>
+                                </div>
+                                <div class="inputBox">
+                                    <label for="address">Your Address</label>
+                                    <input type="text" name="address">
+                                </div>
+                                <div class="inputBox">
+                                    <label for="phone_no">Your Contact Number</label>
+                                    <input type="text" name="phone_no">
+                                </div>
+                                <div class="inputBox">
+                                    <label for="email">Your Email Address</label>
+                                    <input type="text" name="email">
+                                </div>
+                                <input type="submit" class="btn" value="Contact Us">
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    /* -----Map and contact form------*/
+
+    .main__map{
+        width: 100%;
+    }
+
+.main__map h1{
+    color: var(--text-gray);
+    font-size: 2.5rem;
+    padding: 0.7rem;
+}
+
+.map{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+.map__info{
+    width: 400px;
+    margin:auto;
+}
+.map__info iframe{
+   height: 400px;
+   width: 100%;
+   overflow: hidden;
+}
+
+.contact__form{
+    background: rgba(241, 111, 5, 0.3);
+    padding: 1rem;
+    margin: auto;
+    color: var(--text-gray);
+    width: 400px;
+    border-radius: 10px;
+}
+.inputBox input{
+    margin: 1rem 0rem;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+form input[type="submit"]{
+    padding: 10px 20px;
+    margin-top: 10px;
+    background: rgba(0, 80, 67, 0.6);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    display: block;
+    color: #fff;
+    margin: auto;
+}    
+
+</style>

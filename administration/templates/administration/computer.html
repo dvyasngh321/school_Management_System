@@ -1,27 +1,64 @@
-{% extends 'administration/base.html' %}
-{% load static %}
-{% block content %}
-<div class="container-fluid">
-    <div class="row">
-       <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto my-5">
-          <div class="row gx-5 mx-sm-auto">
-             <div class="col-lg-7 col-md-11 col-11 mx-auto">
-                <div class="row gy-5">
-                   <div class="col-12 card p-4 shadow welcome__school">
-                        <div class="d-flex justify-content-center align-items-center flex-column pt-3 pb-3 welcome">
-                            <h1 class="main_heading">Computer Lab</h1>
-                            
-                        </div>
-                        <figure class="right_side__img mb-5">
-                            <img src="{% static 'images/school.jpg' %}" class="img-fluid shadow">
-                        </figure>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, dolorum consequuntur! Quaerat hic sequi facere placeat optio ab repudiandae qui debitis reprehenderit neque ipsa vero minima, aliquam quibusdam quas enim esse quae? Excepturi dolor doloremque consectetur maiores eos dolores consequatur. Officia ullam, eaque quae magni ipsam in dicta illo vitae.</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam deleniti ut, tempora tenetur quod nostrum rerum reiciendis beatae in eaque! Eos qui eius doloribus mollitia porro exercitationem vitae eum sapiente blanditiis similique. Maxime est odit quidem eum, voluptates recusandae eius.</p>
-                   </div>
-                </div>
-             </div>
-            </div>
-        </div>
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Our Facilities</h1>
+    <div class="gallery">
+        <h1 style="background: transparent; padding: 4rem; color:white; margin-top: 2rem; text-align: center;">Computer Lab</h1>
     </div>
-</div>             
-{% endblock %}
+    <div class="computer__content" style="width: 80%; margin: auto; margin-bottom: 100px;">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos porro alias, tempora id aliquid est aperiam repellat nihil accusamus temporibus quas enim nesciunt assumenda fugit ipsum sunt explicabo illum. Odit quis soluta sunt ex autem adipisci iusto voluptatem vitae porro. Aspernatur impedit cupiditate unde consectetur libero? In ad necessitatibus quam?</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores animi doloribus ratione tempora eum, veniam impedit, fugit harum voluptatibus, itaque illo! Consequatur mollitia suscipit culpa est sed voluptatibus modi dolore consequuntur debitis, quis ipsam fugiat aperiam ipsa consectetur corporis sint ad nisi temporibus, perferendis sequi doloremque nulla accusamus placeat tempora?</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat in impedit illo quae magni eligendi illum tempora optio sapiente quod.</p>
+    </div>
+    <div class="gallery">
+    </div>
+    <div class="computer__content" style="width: 80%; margin: auto; margin-bottom: 100px;">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos porro alias, tempora id aliquid est aperiam repellat nihil accusamus temporibus quas enim nesciunt assumenda fugit ipsum sunt explicabo illum. Odit quis soluta sunt ex autem adipisci iusto voluptatem vitae porro. Aspernatur impedit cupiditate unde consectetur libero? In ad necessitatibus quam?</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores animi doloribus ratione tempora eum, veniam impedit, fugit harum voluptatibus, itaque illo! Consequatur mollitia suscipit culpa est sed voluptatibus modi dolore consequuntur debitis, quis ipsam fugiat aperiam ipsa consectetur corporis sint ad nisi temporibus, perferendis sequi doloremque nulla accusamus placeat tempora?</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat in impedit illo quae magni eligendi illum tempora optio sapiente quod.</p>
+    </div>
+    <div class="gallery">
+    </div>
+    <div class="computer__content" style="width: 80%; margin: auto; margin-bottom: 100px;">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos porro alias, tempora id aliquid est aperiam repellat nihil accusamus temporibus quas enim nesciunt assumenda fugit ipsum sunt explicabo illum. Odit quis soluta sunt ex autem adipisci iusto voluptatem vitae porro. Aspernatur impedit cupiditate unde consectetur libero? In ad necessitatibus quam?</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores animi doloribus ratione tempora eum, veniam impedit, fugit harum voluptatibus, itaque illo! Consequatur mollitia suscipit culpa est sed voluptatibus modi dolore consequuntur debitis, quis ipsam fugiat aperiam ipsa consectetur corporis sint ad nisi temporibus, perferendis sequi doloremque nulla accusamus placeat tempora?</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat in impedit illo quae magni eligendi illum tempora optio sapiente quod.</p>
+    </div>
+</body>
+</html>
+
+<style>
+    .gallery{
+        width: 80%;
+        height: 400px;
+        margin: auto;
+        background-image: url('https://static.toiimg.com/thumb/72975551.cms?width=680&height=512&imgsize=881753') ;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        animation: slide1 20s infinite;
+    }
+
+
+
+    @keyframes slide1{
+    33%{
+        background-image: url('https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    66%{
+        background-image: url('{% static "images/park3.jpg" %}');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+</style>

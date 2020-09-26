@@ -1,11 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Welcome to facilities page </h1>
-</body>
-</html>
+{% load static %}
+    <section class="container facility__section" style="width: 80%; margin-top: 3rem;">
+        <h1 class="facility__heading">Our Facilities</h1><hr style="width: 300px;">
+        <div class="facility">
+            <div class="facility__card">
+                <div class="facility__img">
+                    <img src="{% static 'images/result.svg' %}">
+                </div>
+                <div class="facility__content">
+                    <a href="{% url 'computer' %}"><h2>Computer Lab</h2></a>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor soluta voluptates aperiam ipsum fuga deserunt nemo aut delectus, cum quasi.</p>
+                </div>
+            </div>
+            <div class="facility__card">
+                <div class="facility__img">
+                    <img src="{% static 'images/result.svg' %}">
+                </div>
+                <div class="facility__content">
+                    <a href="{% url 'computer' %}"><h2>Computer Lab</h2></a>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor soluta voluptates aperiam ipsum fuga deserunt nemo aut delectus, cum quasi.</p>
+                </div>
+            </div>
+            <div class="facility__card">
+                <div class="facility__img">
+                    <img src="{% static 'images/result.svg' %}">
+                </div>
+                <div class="facility__content">
+                    <a href="{% url 'computer' %}"><h2>Computer Lab</h2></a>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor soluta voluptates aperiam ipsum fuga deserunt nemo aut delectus, cum quasi.</p>
+                </div>
+            </div>
+            <div class="facility__card">
+                <div class="facility__img">
+                    <img src="{% static 'images/result.svg' %}">
+                </div>
+                <div class="facility__content">
+                    <a href="{% url 'computer' %}"><h2>Computer Lab</h2></a>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor soluta voluptates aperiam ipsum fuga deserunt nemo aut delectus, cum quasi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<style>
+    
+.facility__section{
+    width: 70%;
+    margin: auto;
+    height: auto;
+}
+
+.facility__section h1{
+    font-size: 2.5rem;
+    margin-top: 10px;
+    color: var(--text-gray);
+}
+
+section .facility{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 30px;
+}
+
+.facility__card{
+    width: 300px;
+    margin: 1rem;
+    margin: auto;
+    padding: 1rem;
+    margin-bottom: 30px;
+    background-color: rgba(211, 97, 5, 0.8);
+    border-radius: 60px 0px 60px 0px ;
+    transition: transform .5s ease-in-out;
+}
+
+.facility__card:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.facility__card .facility__img{
+    padding: 10px;
+}
+.facility__card .facility__img img{
+    height: 100px;
+    width: 100%;
+}
+
+.facility__card .facility__content{
+    text-align: center;
+    color: #3f4954;
+    padding: 1rem;
+}
+
+.facility__card .facility__content h2{
+    margin-bottom: 0.9rem;
+    color: #fff;
+    border-bottom: 1px solid #3f4954;
+}
+
+.facility__card .facility__content p{
+    color: #fff;
+}
+
+
+
+/* ------Facility section---------- */
+</style>

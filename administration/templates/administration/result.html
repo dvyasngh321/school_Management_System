@@ -1,14 +1,16 @@
 {% extends 'administration/base.html' %}
 {% load static %}
 {% block content %}
-   <div class="container m-auto">
+   <div class="container" style="margin: 50px;">
+       {% if published_result.result == True %}
        <div class="row">
            <div class="col-lg-10 m-auto">
+               <h1 class="text-center mb-5">Result for {{published_result.exam_title}}</h1>
                <div class="row">
                    <div class="col-lg-5 m-3">
-                        <p> UserName: {{result.username}}</p>
-                        <p>Name: {{result.student_name}}</p>
-                        <p>Grade: {{student.grade}}</p>
+                        <p class="p-2"> UserName: {{result.username}}</p>
+                        <p class="p-2">Name: {{result.student_name}}</p>
+                        <p class="p-2">Grade: {{student.grade}}</p>
                    </div>
                    {% if student.image %}
                    <div class="col-lg-5 m-3">
@@ -82,7 +84,10 @@
                    </div>
                </div>
            </div>
+           {% else %}
+           <h1>No results</h1>
        </div>
+       {% endif %}
    </div>
 
 {% endblock %}

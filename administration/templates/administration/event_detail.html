@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="height: 100vh; width: 80%; margin: auto; text-align: center;">
+        <h1>{{event.title}}</h1><span><small>{{event.created_date}}</small></span>
+        <p>{{event.description}}</p>
+        {% if event.image %}
+        <div style="height: 400px; width: 800px; margin: auto;">
+            <img src="{{ event.image.url }}" style="width: 100%;" >
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

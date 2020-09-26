@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{paybill.name}}</h1>
+    <h1>{{paybill.teacher}}</h1>
+    <h1>{{paybill.salary}}</h1>
+
+    <div class="paybill" style="width: 60%; height: 200px; display: flex; flex-direction: row; justify-content: space-between; flex-wrap: wrap;">
+        <div class="paybill_content" style="padding: 1rem;">
+            <h3>Name : {{paybill.name}}</h3>
+            <h3>Username : {{paybill.teacher}}</h3>
+            <h3>Month : {{paybill.month}}</h3>
+        </div>
+        <div style="padding: 1rem;">
+            <h3>Salary : {{paybill.salary}}</h3>
+            <h3>Tax : {{paybill.tax}}</h3>
+            <h3>Date : {{paybill.created_date}}</h3>
+        </div>
+    </div>
+
+    <button type="button" id="print_page" onclick="printPage()">Print Page</button>
+</body>
+<script>
+    function printPage(){
+        window.print();
+    }
+</script>
+</html>

@@ -1,16 +1,21 @@
 {% extends 'administration/base.html' %}
 {% block content %}
-<div class="container m-auto">
+<div class="container" style="width: 80%; margin: 50px;">
     <div class="row">
         <div class="col-lg-8 m-auto p-3">
             <h1 class="text-center">Send Notification for Class</h1>
             <form method="POST" class="form=group">
                 {% csrf_token %}
-                <div class="row shadow m-3 p-3">
-                    {{form}}
-                    
+                
+                <div>
+                    <label for="">Grade</label>
+                    {{ form.grade }}
                 </div>
-                <button type="submit" class="btn m-3" style="color: white; background-color: teal;">Submit</button>
+                <input type="text" hidden name="name" value="{{request.user.username}}">
+                <input type="text" name="title" placeholder="Title" class="form-control m-2" autocomplete="none">
+                <input type="url" name="website" placeholder="website Url" class="form-control m-2" autocomplete="none">
+                <textarea cols="100" rows="5" class="form-control m-2" placeholder="Write Your message" name="message" autocomplete="none"></textarea> 
+                <button type="submit" class="btn m-3" style="color: white; background-color: tomato;">Submit</button>
             </form>
         </div>
     </div>

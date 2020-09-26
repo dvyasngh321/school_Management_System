@@ -1,0 +1,91 @@
+{% load static %}
+<section class="message container" style="padding-top: 1.5rem; width: 90%;"> 
+    <h1 style="font-size: 2.5rem; color: gray; width: 90%;">Message to Students</h1>
+    <hr style="width: 40%;">
+    <div class="princi">
+        <div class="message__princi">
+            <img src="{% static 'images/dvyaimage.jpg'%} ">
+        </div>
+        <div class="message__content">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt harum libero doloribus voluptas illum saepe sed enim minus facere hic voluptates, error, laudantium reiciendis dignissimos totam repudiandae modi adipisci assumenda!</p>
+        </div>
+    </div>
+    <div class="princi">
+        <div class="message__content2">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt harum libero doloribus voluptas illum saepe sed enim minus facere hic voluptates, error, laudantium reiciendis dignissimos totam repudiandae modi adipisci assumenda!</p>
+        </div>
+        <div class="message__princi">
+            <img src="{% static 'images/dvyaimage.jpg'%} ">
+        </div>
+    </div>
+</section>
+
+<style>
+    
+/*-----Message from principal-----*/
+
+.message{
+    height: auto;
+    width: 100%;
+    /* background-image: url('../img/park3.jpg'); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.message .princi{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.message .message__princi{
+    width: 20%;
+    height: auto;
+}
+.message .message__princi img{
+    width: 100%;
+    height: 130px;
+    padding: 10px;
+    display: block;
+    margin: auto;
+    border-radius: 50%;
+    margin-top: 20px;
+}
+
+.message .message__content{
+   width: 80%;
+   height: auto;
+   padding: 30px;
+}
+.message .message__content2{
+   width: 80%;
+   height: auto;
+   padding: 30px;
+}
+
+.message .message__content p{
+   background: rgba(211, 97, 5, 0.8);
+   color: white;
+   padding: 40px;
+   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 5% 100%, 5% 5%);
+}
+
+.message .message__content2 p{
+   background: rgba(211, 97, 5, 0.8);
+   color: white;
+   padding: 40px;
+   clip-path: polygon(0% 0%, 100% 0%, 95% 5%, 95% 100%, 0% 100%, 0% 0%);
+}
+
+@media only screen and (max-width:700px){
+    .message{
+        display: none;
+    }
+}
+
+/*--x---Message from principal---x--*/
+</style>

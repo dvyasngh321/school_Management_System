@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from administration.models import User, Teacher, StudentLeaveApplication
 from administration.decorators import teacher_required, classteacher_required, teachers_required
 from .forms import AddClassForm, AddClassAsClassTeacherForm, MessageForm
@@ -55,7 +57,7 @@ def manage_result(request, class_id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect('/teacher/classteacher/')
+            return HttpResponseRedirect(reverse('manage_result', args=(class_id,)))
     result = Result.objects.filter(class_teacher_id = request.user.id)
     for instance in result:
         instance.total = instance.math + instance.science + instance.social_studies + instance.population + instance.English + instance.nepali
@@ -72,7 +74,7 @@ def update_result(request, id):
         form = ResultForm(request.POST, instance = pi)
         if form.is_valid():
             form.save()
-            return redirect('/teacher/classteacher/')
+            return HttpResponseRedirect(reverse('manage_result',args=(pi,)))
     else:
         pi = Result.objects.get(pk=id)
         form = ResultForm(instance = pi)
@@ -85,7 +87,7 @@ def delete_result(request, id):
     if request.method == 'POST':
         pi = Result.objects.get(pk=id)
         pi.delete()
-        return redirect('/teacher/classteacher/')
+        return HttpResponseRedirect(reverse('manage_result', args =(pi,)))
 
 
 @login_required
@@ -93,3 +95,12 @@ def delete_result(request, id):
 def leave_notifications(request):
     leave_notifications = StudentLeaveApplication.objects.filter(teacher_username = request.user.username).order_by('-created_date')
     return render(request, 'teacher/leave_notifications.html', {'leave_notifications':leave_notifications})
+
+
+@login_required
+@classteacher_required
+def delete_leave_notification(request, id):
+    if request.method == 'POST':
+        notification = StudentLeaveApplication.objects.get(id = id)
+        notification.delete()
+        return redirect('/teacher/leave_notification/')

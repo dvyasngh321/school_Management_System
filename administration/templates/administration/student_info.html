@@ -1,36 +1,41 @@
 {% extends 'administration/base.html' %}
+{% load static %}
 {% block content %}
-<div class="container m-auto">
+<div class="container" style="margin-top: 100px;">
     <div class="row mt-3 mb-3"><hr>
         <div class="col-lg-5 m-auto">
-            {% if student.image %}
             <div class="student_image">
                <img src="{{ student.image.url }}" style="height: 200px; max-width: 100%;">
             </div>
-            {% endif %}
             <div>
-                <a class="btn p-2 mt-3" href="{% url 'student_form' student.user.id %}" style="color: white; background-color: teal;">Fill Your Information</a>
+                <a class="btn p-2 mt-3 ml-5" href="{% url 'student_form' student.user.id %}" style="color: white; background-color: teal;">Fill Your Information</a>
             </div>
         </div>
         <div class="col-lg-5 m-auto">
-              <p>Student UserName:{{student.user.username}}</p>
-              <p>Student Name: {{student.user.first_name}} {{student.user.last_name}}</p>
-              <p>Father's Name: {{student.father_name}}</p>
-              <p>Mother's Name: {{student.mother_name}}</p>
-              <p>Gender: {{student.gender}}</p>
-              <p>Grade: {{student.grade}}</p>
-              <p>Date of Birth: {{student.dob}}</p>
+              <p>Student UserName:<span class="m-2">{{student.user.username}}</span></p>
+              <p>Student Name: <span class="m-2">{{student.user.first_name}} {{student.user.last_name}}</span></p>
+              <p>Father's Name: <span class="m-2">{{student.father_name}}</span></p>
+              <p>Mother's Name: <span class="m-2">{{student.mother_name}}</span></p>
+              <p>Gender: <span class="m-2">{{student.gender}}</span></p>
+              <p>Grade: <span class="m-2">{{student.grade}}</span></p>
+              <p>Date of Birth: <span class="m-2">{{student.dob}}</span></p>
         </div>
     </div><hr>
     <div class="row mt-3 mb-3">
         <div class="col-lg-5 ml-auto m-5">
             <h1>Fee Information</h1>
-            <p>You have Paid: {{student.account.paid}}</p>
-            <p>Your Total Fee is: {{student.account.total}}</p>
-            <p>Your Remaining Due is: {{student.account.remaining_due}}</p>
-            <p> Description About Payment: {{student.account.description}}</p>
+            <p>Your total Amount for {{account.month}} is:  <strong>{{account.amount}}</strong></p>
+            <p>You have Paid: <span class="m-2"><strong>{{payment.paid}}</strong></span></p>
+            <p>Your Remaining Due is: <span class="m-2"><strong>{{student.account.remaining}}</strong></span></p>
+            <p>Your Total Fee to be paid is:<span class="m-2"><strong>{{student.account.total}}</strong></span></p>
+            <p> Description About Payment: <span class="m-2"><strong>{{student.account.description}}</strong> </span></p>
         </div>
     </div>
 </div>
+<style>
+    strong{
+        font-size: 1.2rem;
+    }
+</style>
    
 {% endblock %}

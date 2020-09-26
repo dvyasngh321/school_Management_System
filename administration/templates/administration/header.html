@@ -1,61 +1,96 @@
 {% load static %}
 <header>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6 col-sm-12 col-md-6">
-            <div class="header__section">
-                <h1>Welcome to GyanoDaya School</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, velit.</p>
-                <button type="button">Connect With Us</button>
+    <section class="site__title">
+        <div class="site__background">
+            <div class="site__info">
+                <h5>Scool</h5>
+                <h1>Welcome to Our School</h1> 
+                <button>Connect With Us</button>
             </div>
         </div>
-        <div class="col-lg-6 col-sm-12 col-md-6">
-            <div class="header__image">
-                <img src="{% static 'images/schoolbg.png' %}"> 
-            </div>
-        </div>
-    </div>
-</div>
+   </section>
 </header>
 
 <style>
-/* @media screen and (max-width: 500px){
-    header{
-        height: 100vh;
-    }
-    header .header__section{
-        background: blue;
-        margin-top: 1rem;
-    }
-    header .header__image{
-        margin-top: 1rem;
-        background: blue;
-    }
+    header .site__title{
+    width: 100%;
+    height: 90vh;
+    background-image: url('{% static "images/park1.jpg" %}');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: slide 20s infinite;
+    overflow-x: hidden;
+}
 
-    header .header__image img{
-        background: brown;
-        display: inline-block;
+header .site__title .site__background{
+    padding: 2rem 2rem 2rem 0rem;
+    width: 70%;
+}
+
+header .site__title .site__background .site__info {
+    background-color: rgba(211, 97, 5, 0.8);
+    padding: 3rem;
+    color: white;
+    font-size: 0.8rem;
+    margin-top: 120px;
+    font-weight: bold;
+}
+
+header button{
+    outline: none;
+    border: none;
+    padding: 0.7rem 1rem;
+    background-color: rgba(0, 80, 67, 0.8);
+    margin-top: 1rem;
+    color: white;
+    cursor: pointer;
+    margin-left: 0.6rem; 
+    border-radius: 10px;
+}
+
+header button:hover{
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+
+@keyframes slide{
+    33%{
+        background-image: url('{% static "images/park2.jpg" %}');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
-} */
-@media screen and (max-width: 960px){
-    header{
-        height: 80vh;
-    }
-    header .header__section{
-        margin-top: 7rem;     
-    }
-    header .header__section h1{
-        font-size: 700;
-    }
-    header .header__image{
-        margin-top: 1rem;
-        margin-bottom: 16rem;
-        display: none;
-    }
-    .header__image img{
-        height: 150px;
-        max-width: 100%;
-        padding: 30px;    
+    66%{
+        background-image: url('{% static "images/park3.jpg" %}');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 }
+
+
+main .site__title .site__background h5{
+    font: bold;
+    margin-top: 200px;
+    line-height: 20px;
+}
+
+main .site__title .site__background button{
+    padding: 0.9rem;
+    border-radius: 2rem;
+    border: none;
+    background: rgba(0, 80, 67, 0.6);
+    color: #fff;
+    cursor: pointer;
+    margin: auto;
+    margin-bottom: 200px;
+}
+
+main .site__title .site__background button:hover{
+    background-color: transparent;
+    border: 1px solid #fff;
+}
+
 </style>

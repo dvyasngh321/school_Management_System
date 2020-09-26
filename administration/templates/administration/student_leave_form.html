@@ -1,26 +1,28 @@
 {% extends 'administration/base.html' %}
 {% block content %}
-   <div class="container mt-3 mt-3 m-auto">
-       <div class="row">
-           <div class="col-lg-8 m-auto">
-           <form method="POST">
-               {% csrf_token %}
-               {% if user.is_authenticated %}
-               <input type="hidden" name="student" value="{{request.user.username}}">
-               {% endif %}
-               <div class="form-group mb-3">
-                   <label for="teacher_username">Your ClassTeacher's Username</label>
-                   <input type="text" name="teacher_username" class="form-control">
-               </div>
-               <div class="form-group mb-3">
-                   <label for="reason">Reason For Leave</label>
-                   <textarea name="reason" class="form-control"></textarea>
-               </div>
-            <button type="submit" class=" btn mt-3 mb-3" style="background: #145374; color:white;">Submit</button>
-          </form>
-          </div>
-       </div>
-   </div>
+<div style="margin-top: 100px; margin-bottom: 150px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 m-auto">
+            <form method="POST">
+                {% csrf_token %}
+                {% if user.is_authenticated %}
+                <input type="hidden" name="student" value="{{request.user.username}}">
+                {% endif %}
+                <div class="form-group mb-3">
+                    <label for="teacher_username">Your ClassTeacher's Username</label>
+                    <input type="text" name="teacher_username" class="form-control">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="reason">Reason For Leave</label>
+                    <textarea name="reason" class="form-control"></textarea>
+                </div>
+             <button type="submit" class=" btn mt-3 mb-3" style="background: tomato; color:white;">Submit</button>
+           </form>
+           </div>
+        </div>
+    </div>
+</div>
   
     
 {% endblock %}

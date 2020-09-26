@@ -1,0 +1,32 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+{% load static %}
+<div class="container mt-5 mb-5 m-auto">
+    <div class="row mt-3">
+        <div class="col-lg-4 mt-3 shadow p-2">
+            <div class="total__student" style="width: 250px; height: 150px;">
+                <h1 style="text-align: center;">Total Student: {{student.count}}</h1>
+            </div>
+        </div>
+        <div class="col-lg-4 mt-3 shadow p-2">
+            <div class="total__student" style="width: 250px; height: 150px;">
+                <h1 style="text-align: center;">Total Staff: {{staff.count}}</h1>
+            </div>
+        </div>
+        <div class="col-lg-4 mt-3 shadow p-2">
+            <div class="total__student" style="width: 250px; height: 150px;">
+                <h1 style="text-align: center;">Total Income: {{total}}</h1>
+            </div>
+        </div>
+        <div class="col-lg-4 mt-3 shadow p-2">
+            <div class="total__student" style="width: 250px; height: 150px;">
+                <h1 style="text-align: center;">Total Expense: {{total_expense}}</h1>
+            </div>
+        </div>
+        <div class="col-lg-3 mt-3 shadow" id= "account" style="margin: 2rem;">
+            <a href="{% url 'teacher_leave_application' %}">View Leave Application</a><br>
+            <p>Have a look if anyone have applied for leave</p>    
+        </div>
+    </div>
+</div>
+{% endblock %}    

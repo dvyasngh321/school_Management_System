@@ -1,0 +1,31 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+           <div class="container" style="width: 80%; margin: 50px;">
+               <div class="row">
+                   <div class="col-lg-10 m-auto">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>id</th>
+                                  <th>Status</th>
+                                  <th>Reason</th>
+                                  <th>Date</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            {% for app in application %}
+                              <tr>
+                                {% if app.approve == True %}
+                                   <td>{{app.id}}</td>
+                                   <td>Congratulations Your Application is approved</td>
+                                   <td>{{app.reason}}</td>
+                                   <td>{{app.created_date}}</td>
+                                {% endif %}
+                              </tr>
+                            {% endfor %}  
+                          </tbody>
+                      </table>
+                   </div>
+               </div>
+           </div>
+{% endblock %}

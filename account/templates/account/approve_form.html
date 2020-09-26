@@ -1,0 +1,37 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+<div class="container" style="width: 80%; margin: 50px;">
+    <div class="row">
+        <div class="col-lg-10 m-auto">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Total</th>
+                        <th>Remaining Due</th>
+                        <th>Created Date</th>
+                        <th>Approved Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in student %}
+                    <tr>
+                        <td>{{student.name}}</td>
+                        <td>{{student.total}}</td>
+                        <td>{{student.remaining_due}}</td>
+                        <td>{{student.created_date}}</td>
+                        <td>{{student.approve}}</td>
+                        <td><a href="{% url 'confirm_approval' student.id %}" class="btn btn-primary">Edit</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <form method="POST" action="{% url 'delete_all' %}">
+                {% csrf_token %}
+                <input type="submit" value="Delete" class="btn btn-danger">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

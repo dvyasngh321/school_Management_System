@@ -1,16 +1,24 @@
 {% extends 'administration/base.html'%}
 {% block content %}
+    <!-- Search form -->
+    <div class="container" style="width: 50%; margin: auto;">
+        <div class="md-form mt-0">
+            <form method="GET" action="/account/search">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="query" id="query">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+    </div>
+    
     <table style="width:100%" class="table">
         <tr> 
             <th>ID</th>
             <th>UserName</th>
             <th>Student Name</th>
-            <th>Grade</th>
             <th>Month</th>
             <th>Amount</th>
+            <th>Previous Balance</th>
             <th>Total</th>
-            <th>Paid</th>
-            <th>Remaining Due</th>
             <th>Description</th>
             <th>created Date</th>
             <th>delete</th>
@@ -21,12 +29,10 @@
             <td>{{account.id}}</td>
             <td>{{account.user}}</td>
             <td>{{account.student}}</td>
-            <td>{{account.grade}}</td>
             <td>{{account.month}}</td>
             <td>{{account.amount}}</td>
+            <td>{{account.remaining}}</td>
             <td>{{account.total}}</td>
-            <td>{{account.paid}}</td>
-            <td>{{account.remaining_due}}</td>
             <td>{{account.description}}</td>
             <td>{{account.created_date}}</td>
             <form action="{% url 'delete_information' account.id %}" method="POST">
@@ -34,6 +40,8 @@
                 <td><input type="submit" value="Delete" class="btn btn-danger"></td>
             </form>
             <td><a href="{% url 'update_information' account.id %}" class="btn btn-primary">edit</a></td>
+            <td><a href="{% url 'payment' account.id %}" class="btn btn-primary">Payment</a></td>
+            <td><a href="{% url 'view_payment' account.id %}" class="btn btn-primary">View Payment History</a></td>
             <td><a href="{% url 'invoice' account.id %}" class="btn btn-primary">invoice</a></td>
         </tr>
         {% endfor %}

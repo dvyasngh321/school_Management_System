@@ -1,0 +1,96 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>form</title>
+  </head>
+  <style>
+      body{
+          background-color: rgb(187, 184, 184);
+      }
+      span{
+          display: flex;
+          flex-direction: row;
+          
+      }
+      span h4{
+          margin-top: 30px;
+          margin-left: 20px;
+          font-weight: bold;
+      }
+  </style>
+  <body>
+   
+    <div class="container p-3 m-auto">
+        <div class="row">
+            <div class="col-lg-8 m-auto">
+                {% if user.is_authenticated and user.is_student %}
+                <a href="{% url 'student_profile' %}" class="btn btn-primary">Back To Profile</a>
+             {% elif user.is_teacher and user.is_classteacher %}   
+             <a href="{% url 'teacher_page' %}">Back To Profile</a>
+             {% endif %}
+                <h3>You Can Post Your Query</h3>
+                <form method="POST" class="form-group" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if user.is_authenticated %}
+                        <input type="text" hidden name="author" value="{{request.user.id}}">
+                    {% endif %}<br>
+                    <textarea name="description" placeholder="Post Your Query" class="form-control" cols="100" rows="10" style="border-radius: 15px;"></textarea><br>
+                    <fieldset>
+                        <input type="file" name="image" class="m-2">
+                    </fieldset><br>
+                    <button type="submit" class="btn btn-primary m-2">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row shadow">
+            <div class="col-lg-8" style="width: 100%; margin: auto;">
+                {% for post in posts%}
+                <div class="card" style="width: 100%; border:none; margin: 5px; box-shadow: 50px black;">
+                    <span>
+                        
+                    {% if post.author.student.image.url %}
+                        <img src="{{ post.author.student.image.url }}" style="height: 80px; width: 80px; padding: 5px; border-radius: 50%;"><h4>{{post.author}}</h4></span>      
+                    {% else %}
+                        <img src="{% static 'images/user.png' %}" style="height: 80px; width: 80px; padding: 5px;  border-radius: 50%;"><h4>{{post.author}}</h4></span>
+                    {% endif %}
+                    {% if post.image %}
+                    <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap">
+                    {% endif %}
+
+                    <div class="card-body">
+                      <p class="card-text">{{post.description}}</p>
+                      <small class="card-text text-muted">{{post.created_date}}</small>
+                     
+                        <a href="{% url 'post_detail' post.id %}">Comment</a>
+                     
+                        {% if request.user == post.author %}
+                        <form method="POST" action="{% url 'post_delete' post.id %}">
+                            {% csrf_token %}
+                            <input type="submit" value="Delete">
+                        </form>
+                        {% endif %}
+                      
+                    </div>
+                  </div>
+                {% endfor %}  
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

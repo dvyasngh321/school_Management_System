@@ -1,0 +1,33 @@
+{% extends 'administration/base.html' %}
+{% block content %}
+<div class="container" style="width: 90%; margin: 50px;"> 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Username</th>
+                <th>Reason</th>
+                <th>Approve</th>
+                <th>Created Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for application in applications %}
+            <tr>
+                <td>{{application.id}}</td>
+                <td>{{application.user}}</td>
+                <td>{{application.reason}}</td>
+                <td>{{application.approve}}</td>
+                <td>{{application.created_date}}</td>
+                <form method="POST" action="{% url 'delete_app' application.id %}">
+                    {% csrf_token %}
+                    <td><input value="Delete" type="submit" class="btn btn-danger"></td>
+                </form>
+                <td><a href="{% url 'approve_application' application.id %}" class="btn btn-primary">Approve</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

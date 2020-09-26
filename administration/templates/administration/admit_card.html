@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if card.approve == True %}
+    <div style="width: 50%; margin: auto; text-align: center;">
+        <h3>Admit Card</h3>
+    </div>
+    <div style="display: flex; flex-direction: row; justify-content: space-between; flex-wrap: wrap; width: 50%; margin: auto;">
+        <div>
+            <p>Username: <strong>{{student.user.username}}</strong></p>
+            <p> Name: <strong>{{student.user.first_name}} {{student.user.last_name}}</strong></p>
+            <p>Grade: <strong>{{student.grade}}</strong></p>
+            <p>Gender: <strong>{{student.gender}}</strong></p>
+        </div>
+        <div>
+            <p>Phone Number: <strong>{{student.phone}}</strong></p>
+            <p>Date of Birth: <strong>{{student.dob}}</strong></p>
+            <p>Created Date: <strong>{{student.created_date}}</strong></p>
+        </div>
+    </div> 
+    {% else %}
+    <p>No admit Card Available</p>
+    {% endif %}
+    <button type="button" id="print_page" onclick="printPage()">Print Page</button>
+</body>
+<script>
+    function printPage(){
+        window.print();
+    }
+</script>
+
+</html>

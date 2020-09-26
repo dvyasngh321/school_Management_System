@@ -1,0 +1,43 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container" style="width: 90%; margin: 100px;">
+    <div class="row">
+      {% for post in posts%}
+        <div class="col-lg-4 m-2 mb-3" style="padding: 10px;">  
+                <div class="card" style="width: 100%; margin: 5px;">
+                    <span style="display: flex;">
+                      {% if user.is_student %}
+                        <img src="{{ user.student.image.url }}" style="height: 80px; width: 80px; padding: 10px; border-radius: 50%;">
+                      {% else %}
+                        <img src="{% static 'images/user.png' %}" style="height: 80px; width: 80px; padding: 10px; border-radius: 50%;">
+                      {% endif %}
+                      
+                        <div style="display: flex; flex-direction: column;">
+                           <p class="mt-3 p-2">{{post.author}}</p>
+                           <small class="text-muted">{{post.created_date}}</small>
+                        </div>
+                    </span>
+    
+                    {% if post.image %}
+                    <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap">
+                    {% endif %}
+
+                    <div class="card-body">
+                      <p class="card-text">{{post.description}}</p>
+                      <div style="display: flex;">
+                        <a href="{% url 'post_detail' post.id %}" class="btn m-2" style="color: blue;">View Post</a>
+                        {% if request.user == post.author %}
+                        <form method="POST" action="{% url 'post_delete' post.id %}">
+                            {% csrf_token %}
+                            <a href="{% url 'post_delete' post.id %}" class=" btn m-2" style="color: blue;">Delete</a>
+                        </form>
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+                {% endfor %}  
+    </div>
+</div>
+{% endblock %}

@@ -3,79 +3,57 @@
 
 {% block content %}
    {% include 'administration/header.html' %}
-   <div class="container-fluid">
-      <div class="row">
-         <div class="col-xl-10 col-lg-10 col-md-11 col-11 mx-auto my-5">
-            <div class="row gx-5 mx-sm-auto">
-               <div class="col-lg-7 col-md-11 col-11 mx-auto">
-                  <div class="row gy-5">
-                     <div class="col-12 card p-4 shadow welcome__school">
-                          <div class="d-flex justify-content-center align-items-center flex-column pt-3 pb-3 welcome">
-                              <h1 class="main_heading">Welcome to Our School</h1>
-                              <p class="main_heading__para">Why Us? and What we have?</p>
-                          </div>
-                          <figure class="right_side__img mb-5">
-                              <img src="{% static 'images/school.jpg' %}" class="img-fluid shadow">
-                          </figure>
-                          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam, dolorum consequuntur! Quaerat hic sequi facere placeat optio ab repudiandae qui debitis reprehenderit neque ipsa vero minima, aliquam quibusdam quas enim esse quae? Excepturi dolor doloremque consectetur maiores eos dolores consequatur. Officia ullam, eaque quae magni ipsam in dicta illo vitae.</p>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam deleniti ut, tempora tenetur quod nostrum rerum reiciendis beatae in eaque! Eos qui eius doloribus mollitia porro exercitationem vitae eum sapiente blanditiis similique. Maxime est odit quidem eum, voluptates recusandae eius.</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-4 col-md-7 col-11 justify-content-end m-lg-0 m-auto">
-                  <div class="row gy-5">
-                     <div class="col-12 shadow" id="grade">
-                          <div class="grade__heading">
-                              <h1>Classes</h1>
-                          </div>
-                          <ul>
-                          {% for grade in grade %}
-                          <li>
-                          <a href="{% url 'class_notification' grade.grade %}">{{grade.grade}}</a>
-                          </li>
-                          {% endfor %}
-                          </ul>
-                     </div>
-                     <div class="col-12 shadow">
-                        <div class="notice">
-                           <div class="notice__heading">
-                              <h1>Notices</h1>
-                           </div>
-                          <ol>
-                          {% for notice in notices %}
-                          <li class="mb-2">
-                          <a href="#">{{notice.title}}</a>
-                          </li>
-                          {% endfor %}
-                        </ol>
-                        </div>  
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-  </div>
-  <div class="facilities shadow">
-      <h1>FACILITIES</h1>
-  </div>
-  <div class="container m-auto">
-      <div class="row rect">
+   </main>  
+      {% include 'administration/announcements.html' %}
+      {% include 'administration/event.html' %}
+      {% include 'administration/facilities.html' %}
 
-         <div class="col-lg-3 rect1 m-1 m-auto">
-            <a href="{% url 'computer' %}" style="color: white; text-decoration:none;"><h1>Computer Lab</h1></a>
-         </div>
-         <div class="col-lg-3 rect1 m-1 m-auto">
-            <a href="{% url 'laboratory' %}" style="color: white; text-decoration:none;"><h1>Laboratory</h1></a>
-         </div>
-         <div class="col-lg-3 rect1 m-1 m-auto">
-            <a href="{% url 'sports' %}" style="color: white; text-decoration:none;"><h1>Sports</h1></a>
-         </div>
-         <div class="col-lg-3 rect1 m-1 m-auto">
-            <a href="{% url 'library' %}" style="color: white; text-decoration:none;"><h1>Library</h1></a>
-         </div>
-      </div>
-  </div>
-  {% include 'administration/section.html' %}
-   
+      {% include 'administration/message.html' %}
+      {% include 'administration/contact.html' %}
+      {% include 'administration/main_footer.html' %}
+   </main>
 {% endblock %}
+
+
+<style>
+.events{
+   width: 100%;
+   height: auto;
+   padding: 1rem;
+}
+   
+.event__heading{
+   width: 60%;
+   margin: 1rem 2rem;
+   font-size: 2rem;
+   padding: 1rem;
+   color: var(--text-gray);
+}
+   .event{
+       width: 60%;
+       margin: auto;
+       background-color: rgba(211, 97, 5, 0.8);
+       padding: 3rem;
+       border-radius: 5px;
+       color: white;
+       text-align: center;
+   }
+   
+   .event button{
+       padding: 0.7rem 1rem;
+       outline:  none;
+       border: none;
+       border-radius: 10px;
+       display: block;
+       margin: auto;
+       margin-top: 10px;
+       background-color: rgba(0, 80, 67, 0.6);
+   }
+   
+   .event button:hover{
+       background-color: transparent;
+       border: 1px solid white;
+   }
+   
+   /*--x--Events end----x--*/
+</style>

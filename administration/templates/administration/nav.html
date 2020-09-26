@@ -1,0 +1,62 @@
+<nav class="main__nav">
+   <div class="nav__menu flex__row">
+       <div class="nav__brand">
+           <a href="{% url 'home' %}" class="text__gray">School</a>
+       </div>
+       <div class="toggle__collapse">
+           <div class="toggle__icons">
+               <i class="fa fa-bars"></i>
+           </div>
+       </div>
+       <div>
+           <ul class="nav__items">
+               <li class="nav__link">
+                   <a href="{% url 'home' %}">Home</a>
+               </li>
+               <li class="nav__link">
+                   <a href="{% url 'computer' %}">Facilities</a>
+               </li>
+               <li class="nav__link">
+                   <a href="{% url 'gallery' %}">Gallery</a>
+               </li>
+               <li class="nav__link">
+                   <a href="{% url 'apply_for_registration' %}">Apply Registration</a>
+               </li>
+               {% if user.is_authenticated %}
+               <li class="nav__link">
+                   <a href="{% url 'logout' %}">Logout</a>
+               </li>
+                    {% if user.is_student %}
+                    <li class="nav__link">
+                        <a href="{% url 'student_profile' %}">Student</a>
+                    </li>
+                    {% elif user.is_teacher or user.is_classteacher %}
+                    <li class="nav__link">
+                        <a href="{% url 'teacher_page' %}">Teacher</a>
+                    </li>  
+                    {% elif user.is_accountant %}
+                    <li class="nav__link">
+                        <a href="{% url 'account' %}">Accountant</a>
+                    </li>
+                    {% elif user.is_principal %}
+                    <li class="nav__link">
+                        <a href="{% url 'principal' %}">Principal</a>
+                    </li>
+                    
+                    {% endif %}
+                {% else %}
+               <li class="nav__link">
+                   <a href="{% url 'login' %}">Login</a>
+                </li>
+                {% endif %}
+           </ul>
+       </div>
+       <div class="social text__gray">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-instagram"></i></a>
+        <a href="#"><i class="fa fa-youtube"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+       </div>
+   </div>
+
+</nav>
